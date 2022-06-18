@@ -67,13 +67,10 @@ const loginUser = asyncHandler (async (req, res) => {
 // @route GET /api/users/me
 // @access Private
 const getMe = asyncHandler (async (req, res) => {
-    const { _id, name, email } = await User.findById(req.user.id)
+    // We already have user in req from authMiddleware
+    // const { _id, name, email } = await User.findById(req.user.id)
 
-    res.status(200).json({
-        id: _id,
-        name,
-        email,
-    })
+    res.status(200).json(req.user)
     res.json({message: 'User data display'});
 });
 
